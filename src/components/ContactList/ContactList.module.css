@@ -1,0 +1,16 @@
+.contact {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.18;
+  margin-bottom: 5px;
+}
+.buttonDelete {
+  margin-left: 10px;
+  border-radius: 4px;
+  background-color: darkgrey;
+  color: black;
+  cursor: pointer;
+}
+
