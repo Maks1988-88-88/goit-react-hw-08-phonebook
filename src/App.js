@@ -25,29 +25,24 @@ export default function App() {
       ) : (
         <>
           <AppBar />
-
-          <Switch>
-            <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
+            <Switch>
               <PublicRoute exact path="/">
                 <HomeView />
               </PublicRoute>
-              <PublicRoute exact path="/register" restricted>
+              <PublicRoute path="/register" restricted>
                 <RegisterView />
               </PublicRoute>
-              <PublicRoute
-                exact
-                path="/login"
-                redirectTo="/contacts"
-                restricted
-              >
+              <PublicRoute path="/login" redirectTo="/contacts" restricted>
                 <LoginView />
               </PublicRoute>
-              <PrivateRoute path="/contacts">
+              <PrivateRoute exact path="/contacts" redirectTo="/login">
                 <ContactsView />
               </PrivateRoute>
               <Redirect to="/" />
-            </Suspense>
-          </Switch>
+            </Switch>
+          </Suspense>
+
           <ToastContainer position="bottom-left" autoClose={3000} />
         </>
       )}
