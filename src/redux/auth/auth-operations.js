@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 const token = {
@@ -59,14 +58,16 @@ export const logOut = createAsyncThunk(
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
-  async (_, {getState,rejectWithValue}) => {
+  async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
+      console.log('---');
+
       return rejectWithValue();
     }
-
+    console.log('+++');
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/users/current');
@@ -76,4 +77,3 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   },
 );
-
